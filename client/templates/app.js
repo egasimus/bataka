@@ -1,3 +1,3 @@
 (function (state) {
-  return $.h(".app", "hello world!")
+  return $.h(".app", state.threads.map(_.thread))
 })

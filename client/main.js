@@ -8,7 +8,6 @@
 
   // start vdom main loop
   var view = require("glagol-web").view($.state, $.templates.app);
-  console.log(view.target)
   document.body.innerHTML = "";
   document.body.appendChild(view.target)
 
