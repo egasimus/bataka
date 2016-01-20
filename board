@@ -2,9 +2,8 @@
 
 var resolve = require('path').resolve
   , glagol  = require('glagol')
-  , server  = glagol(resolve(__dirname, 'server'))
-  , options = glagol(resolve(__dirname, 'options'))
+  , server  = glagol(resolve(__dirname, 'server'));
 
-server.mount(options);
+server.bind(glagol(resolve(__dirname, 'common')));
 
 server.tree.main(server);

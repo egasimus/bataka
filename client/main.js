@@ -3,13 +3,13 @@
   //; establish connection with api
   //(/connect)
 
-  //; preprocess and insert css first to prevent fouc
-  //(/lib/vdom/insert-css ./style)
+  // insert css first to prevent fouc
+  require('insert-css')($.style);
 
   // start vdom main loop
-  var view = require("glagol-web").view($.state, $.templates.app);
+  var view = $.lib.riko.V($.state, $.templates.app);
   document.body.innerHTML = "";
-  document.body.appendChild(view.target)
+  document.body.appendChild(view.target);
 
   //; load data from server
   //(/controller/emit "session.init")

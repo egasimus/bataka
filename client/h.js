@@ -1,1 +1,1 @@
-require('glagol-web').vdom.h
+$.lib.riko.V.engine.h

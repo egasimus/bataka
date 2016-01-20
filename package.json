@@ -10,7 +10,11 @@
   "dependencies": {
     "glagol": "git+https://github.com/egasimus/glagol.git",
     "glagol-web": "git+https://github.com/egasimus/glagol-web.git",
+    "insert-css": "^0.2.0",
     "observ": "^0.2.0",
-    "observ-varhash": "^1.0.6"
+    "observ-array": "^3.2.1",
+    "observ-varhash": "^1.0.6",
+    "riko": "git+https://github.com/egasimus/riko.git",
+    "stylus": "^0.53.0"
   }
 }

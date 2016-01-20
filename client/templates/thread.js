@@ -1,3 +1,3 @@
 (function (thread) {
-  return $.h(".thread", thread.posts.map(_.post));
+  return $.h(".thread", (thread.posts || []).map(_.post));
 })
