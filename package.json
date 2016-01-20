@@ -1,0 +1,16 @@
+{
+  "name": "board",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "SOLIPSISTIC PUBLIC LICENSE",
+  "dependencies": {
+    "glagol": "git+https://github.com/egasimus/glagol.git",
+    "glagol-web": "git+https://github.com/egasimus/glagol-web.git",
+    "observ": "^0.2.0",
+    "observ-varhash": "^1.0.6"
+  }
+}

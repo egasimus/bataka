@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+var resolve = require('path').resolve
+  , glagol  = require('glagol')
+  , server  = glagol(resolve(__dirname, 'server'))
+  , options = glagol(resolve(__dirname, 'options'))
+
+server.mount(options);
+
+server.tree.main(server);
