@@ -4,7 +4,11 @@
   //(/connect)
 
   // insert css first to prevent fouc
-  require('insert-css')($.style);
+  var css = $.util.insertCss($.style);
+  app.nodes['style.styl'].events.on('edited', function () {
+    css.parentElement.removeChild(css);
+    css = $.util.insertCss($.style);
+  })
 
   // start vdom main loop
   var view = $.lib.riko.V($.state, $.templates.app);
