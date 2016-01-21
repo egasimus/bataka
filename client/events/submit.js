@@ -3,9 +3,7 @@
   var textarea = document.getElementById("submitText");
   var text = textarea.value.trim();
   if (text !== "") {
-    var id = $.lib.shortid();
-    $.state.threads.put(id, $.models.thread(id,
-      $.models.post(null, textarea.value, null)));
+    var thread = $.models.thread(null, $.models.post(null, textarea.value, null))
+    $.state.threads.put(thread.id, thread);
   }
 })
-
