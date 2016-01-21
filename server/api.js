@@ -4,7 +4,10 @@ require('q-api/server')(function () {
       if (cb) $.state(function (state) { cb(JSON.stringify(state)) });
       return JSON.stringify($.state());
     },
-    "submit": function () {},
+    "submit": function (thread) {
+      thread = JSON.parse(thread);
+      console.log(thread);
+    },
     "reply":  function () {}
   }
 })

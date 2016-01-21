@@ -1,2 +1,2 @@
 require("q-api/client")(function () {
-  return $.state.connection() })
+  return require("q-connection")($.state.server()) })
