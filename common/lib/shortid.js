@@ -1,0 +1,1 @@
+require('shortid').generate

@@ -14,6 +14,7 @@
     "observ-array": "^3.2.1",
     "observ-varhash": "^1.0.6",
     "riko": "git+https://github.com/egasimus/riko.git",
+    "shortid": "^2.2.4",
     "stylus": "^0.53.0"
   }
 }

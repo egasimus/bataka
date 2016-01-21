@@ -1,6 +1,5 @@
 (function () {
-  var idOrOpts = arguments[0]
-    , opts = typeof idOrOpts === "number" ? { id: idOrOpts } : idOrOpts
+  var id = arguments[0]
     , posts = Array.prototype.slice.call(arguments, 1);
-  return { id: opts.id, posts: posts }
+  return { id: id, posts: posts }
 })
