@@ -1,11 +1,11 @@
 $.lib.riko.M({
 
-  threads: [
+  threads: {
 
-    $.models.thread(1,
+    1: $.models.thread(1,
       $.models.post(2, "hello world"))
 
-  ]
+  }
 
 })
 
