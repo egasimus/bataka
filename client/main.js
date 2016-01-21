@@ -1,9 +1,7 @@
 (function (app) {
 
   // establish connection with server api
-  var socket = new WebSocket("ws://" + window.location.host);
-  socket.onclose = function () { $.state.server.set(null)   };
-  socket.onopen  = function () { $.state.server.set(socket) };
+  $.connect();
 
   // insert css first to prevent fouc
   var css = $.util.insertCss($.style);

@@ -11,9 +11,7 @@
       ' in default browser')
   })
 
-  server.socket.on("connection", function (socket) {
-    require("q-connection")(socket, $.api)
-  })
+  server.socket.on("connection", function (socket) { $.connect(socket) });
 
   return server;
 })

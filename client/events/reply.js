@@ -5,5 +5,8 @@
   if (text !== "") {
     var post = $.models.post(null, textarea.value, null);
     $.state.threads[threadId].posts.push(post);
+    $.lib.q.done($.api("reply", threadId, JSON.stringify(post)),
+      function (result) { console.log("submitted", thread.id) },
+      $.lib.error("could not submit thread"));
   }
 })
