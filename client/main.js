@@ -1,7 +1,9 @@
 (function (app) {
 
-  //; establish connection with api
-  //(/connect)
+  // establish connection with server api
+  var socket = new WebSocket("ws://" + window.location.host);
+  socket.onclose = function () { $.state.server.set(null)   };
+  socket.onopen  = function () { $.state.server.set(socket) };
 
   // insert css first to prevent fouc
   var css = $.util.insertCss($.style);
@@ -19,12 +21,7 @@
   });
 
   // connect to server and peers
-  $.state.p2p.broker.set($.lib.peer($.state.id()))
-
-  //; load data from server
-  //(/controller/emit "session.init")
-  //(/controller/emit "jack.init")
-  //(/controller/emit "controller.init")
+  $.state.p2p.broker.set($.lib.peer($.state.user.id()))
 
   return view;
 
