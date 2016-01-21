@@ -2,12 +2,64 @@
   box-sizing border-box
   position   relative
 
-body, input, button, table, select
+body
+  background #fafafa
+  color #222
+  margin 0
+
+body, input, textarea, button, table, select
   font-family Open Sans
   font-size 14px
   line-height 1.7142857
 
+textarea
+  padding 0 6px
+
+button
+  background #ccc
+  font-weight bold
+  border none
+
 .replyForm, .submitForm
+  padding 6px
   textarea, button
     height 36px
     vertical-align top
+
+.thread
+  padding 6px
+  border-top 1px solid #ccc
+
+.post
+  padding-left 12px
+
+  &:first-of-type
+    padding-left 0
+
+  &UserPic
+    margin-right 3px
+    vertical-align top
+
+  &UserName
+    font-weight bold
+    margin-right 3px
+    vertical-align top
+
+  &Date
+    color #777
+    text-decoration none
+    &:hover
+      text-decoration underline
+
+  &Text
+    white-space pre-line
+
+.status
+  position fixed
+  top 0
+  bottom 0
+  right 0
+  width 240px
+  padding 0 6px
+  z-index 1
+  background #ddd

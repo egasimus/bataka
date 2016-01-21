@@ -1,11 +1,14 @@
 $.lib.riko.M({
 
-  threads: {
+  id: $.lib.shortid(),
 
-    1: $.models.thread(1,
-      $.models.post(2, "hello world"))
+  p2p:
+    { broker: null
+    , peers: [] },
 
-  }
+  threads:
+    { 1: $.models.thread(1,
+        $.models.post(2, "hello world")) }
 
 })
 

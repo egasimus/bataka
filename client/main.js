@@ -18,6 +18,9 @@
     view.update($.state());
   });
 
+  // connect to server and peers
+  $.state.p2p.broker.set($.lib.peer($.state.id()))
+
   //; load data from server
   //(/controller/emit "session.init")
   //(/controller/emit "jack.init")

@@ -7,5 +7,5 @@
   var threads = Object.keys(state.threads || {}).map(renderThread);
   function renderThread (id) { return _.thread(state.threads[id]) }
 
-  return $.h(".app", [submit].concat(threads));
+  return $.h(".app", [_.status(state), submit].concat(threads));
 })
