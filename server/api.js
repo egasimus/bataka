@@ -7,14 +7,17 @@ require('q-api/server')(function () {
     "submit": function (thread) {
       thread = JSON.parse(thread)
       thread.posts.forEach(function (post) {
-        post.time = Date.parse(post.time)
+        post.time = new Date(Date.parse(post.time))
       })
-      console.log(thread)
+      $.state.threads.put(thread.id, thread);
     },
     "reply":  function (thread, post) {
       post = JSON.parse(post)
-      post.time = Date.parse(post.time)
-      console.log(thread, post)
+      post.time = new Date(Date.parse(post.time))
+      // TODO fix detection for observ-array
+      posts = $.state.threads[thread].posts();
+      posts.push(post);
+      $.state.threads[thread].posts.set(posts);
     }
   }
 })
