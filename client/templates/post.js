@@ -1,8 +1,12 @@
 (function (post) {
-  return $.h(".post",
-    [ post.image ? $.h(".postImage", $.h("img", { src: post.image })) : null
-    , $.h(".postInfo",
+
+  var media = post.image ? $.h(".postImage", $.h("img", { src: post.image })) : null
+    , body = $.h(".postBody",
       [ $.h("img.postUserPic", { src: "http://www.placecage.com/c/32/32" })
       , $.h("span.postUserName", "onanimus")
-      , $.h("a.postDate", { href: "#" + post.id }, String(post.time)) ])
-    , $.h("span.postText", post.text) ]) })
+      , $.h("span.postText", post.text) 
+      , $.h("div", $.h("a.postDate", { href: "#" + post.id }, String(post.time))) ])
+
+  return $.h(".post#post_" + post.id, [media, body]);
+
+})
