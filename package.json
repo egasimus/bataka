@@ -10,9 +10,6 @@
   "dependencies": {
     "glagol": "git+https://github.com/egasimus/glagol.git",
     "glagol-web": "git+https://github.com/egasimus/glagol-web.git",
-    "observ": "^0.2.0",
-    "observ-array": "^3.2.1",
-    "observ-varhash": "^1.0.6",
     "peer": "^0.2.8",
     "peerjs": "^0.3.14",
     "q": "^1.4.1",
