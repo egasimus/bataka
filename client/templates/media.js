@@ -22,6 +22,7 @@
         }
     , destroy:
         function (element) {
+          if (this.state.fileURL) URL.revokeObjectURL(this.state.fileURL);
         }
     }
 
@@ -40,7 +41,11 @@
     return $.h(".mediaUploader",
       [ $.h("input#upload_" + state.id, { type: 'file', onchange: filePicked })
       , $.h(".uploader", { onclick: pickFile },
-          state.file ? state.file.name : "add media...") ])
+          state.file
+          ? $.h("img",
+            { src: URL.createObjectURL(state.file)
+            , onload: function () { URL.revokeObjectURL(this.src) }})
+          : "add media...") ])
   }
 
   function pickFile () {
