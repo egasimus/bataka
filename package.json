@@ -13,9 +13,9 @@
     "peer": "^0.2.8",
     "peerjs": "^0.3.14",
     "q": "^1.4.1",
-    "q-api": "git+https://github.com/egasimus/q-api.git",
     "q-connection": "^0.6.1",
-    "riko": "git+https://github.com/egasimus/riko.git",
+    "riko-api": "git+https://github.com/egasimus/riko-api.git",
+    "riko-mvc": "git+https://github.com/egasimus/riko-mvc.git",
     "shortid": "^2.2.4",
     "strftime": "^0.9.2",
     "stylus": "^0.53.0"
