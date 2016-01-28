@@ -1,21 +1,29 @@
-(function (id, event) {
+(function (threadId, event) {
+
   event.preventDefault();
-  var textareaId = id ? "replyText_" + id : "submitText"
+
+  var textareaId = threadId ? "replyText_" + threadId : "submitText"
     , textarea   = document.getElementById(textareaId)
     , text       = textarea.value.trim();
+
   if (text !== "") {
-    if (id) {
-      var post = $.models.post(null, textarea.value, null);
-      $.state.threads[id].posts.push(post);
-      $.lib.q.done($.api("reply", id, JSON.stringify(post)),
-        function (result) { console.log("replied to", id) },
-        $.lib.error("could not reply to thread " + id));
+
+    var data =
+      { id:   $.lib.shortid()
+      , time: new Date()
+      , text: textarea.value };
+
+    if (threadId) {
+      $.state.threads[threadId].posts.push(data);
     } else {
-      var thread = $.models.thread(null, $.models.post(null, textarea.value, null))
-      $.state.threads.put(thread.id, thread);
-      $.lib.q.done($.api("submit", JSON.stringify(thread)),
-        function (result) { console.log("submitted", thread.id) },
-        $.lib.error("could not submit thread"));
+      data = { id: $.lib.shortid(), posts: [ data ] };
+      $.state.threads.put(data.id, data);
     }
+
+    $.lib.q.done($.api("post", threadId, JSON.stringify(data)),
+      function (result) { console.log("submitted") },
+      $.lib.error("could not submit"));
+
   }
+
 })

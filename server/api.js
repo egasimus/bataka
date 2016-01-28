@@ -4,17 +4,17 @@ require('riko-api/server')(function () {
       if (cb) $.state(function (state) { cb(JSON.stringify(state)) })
       return JSON.stringify($.state())
     },
-    "submit": function (thread) {
-      thread = JSON.parse(thread)
-      thread.posts.forEach(function (post) {
-        post.time = new Date(Date.parse(post.time))
-      })
-      $.state.threads.put(thread.id, thread);
-    },
-    "reply":  function (thread, post) {
-      post = JSON.parse(post)
-      post.time = new Date(Date.parse(post.time))
-      $.state.threads[thread].posts.push(post);
+    "post": function (threadId, data) {
+      data = JSON.parse(data)
+      if (threadId) {
+        data.time = new Date(Date.parse(data.time))
+        $.state.threads[threadId].posts.push(data);
+      } else {
+        data.posts.forEach(function (post) {
+          post.time = new Date(Date.parse(post.time))
+        })
+        $.state.threads.put(data.id, data);
+      }
     }
   }
 })
