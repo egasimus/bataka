@@ -20,6 +20,28 @@ button
   font-weight bold
   border none
 
+.status
+  position fixed
+  top 0
+  bottom 0
+  right 0
+  width 240px
+  padding 6px
+  z-index 1
+  background #ddd
+  &Item
+    font-size 0.87em
+  input[type=text], input[type=password]
+    border 1px solid #aaa
+    padding 0 3px
+    width 100%
+  input[type=password]
+    border-top none
+    font-size 0.7em
+
+.content
+  padding-right 240px
+
 .replyForm, .submitForm
   padding 6px
   textarea, button
@@ -65,25 +87,14 @@ button
     margin-right 3px
     vertical-align top
 
-  &Date
+  &Date, &TripCode
     color #777
-    text-decoration none
     font-size 0.87em
+
+  &Date
+    text-decoration none
     &:hover
       text-decoration underline
 
   &Text
     white-space pre-line
-
-.status
-  position fixed
-  top 0
-  bottom 0
-  right 0
-  width 240px
-  padding 3px 6px
-  z-index 1
-  background #ddd
-
-  &Item
-    font-size 0.87em
