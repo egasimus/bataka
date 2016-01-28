@@ -26,17 +26,24 @@ button
     height 36px
     vertical-align top
   .mediaUploader
-    input[type=file]
-      display none
-    height 36px
+    max-width 200px
+    max-height 200px
     line-height 36px
     font-size 0.7em
     display inline-block
     cursor pointer
-    padding 0 6px
-    border 2px dashed #ccc
     border-right none
     text-transform uppercase
+    input[type=file]
+      display none
+    img
+      max-width 100%
+      max-height 100%
+    &Add
+      border 1px dotted #aaa
+      border-right none
+      line-height 34px
+      padding 0 5px 0 6px
 
 .thread
   padding 6px

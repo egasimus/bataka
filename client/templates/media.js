@@ -38,14 +38,13 @@
   }
 
   function template (state) {
-    return $.h(".mediaUploader",
+    return $.h(".mediaUploader", { onclick: pickFile },
       [ $.h("input#upload_" + state.id, { type: 'file', onchange: filePicked })
-      , $.h(".uploader", { onclick: pickFile },
-          state.file
-          ? $.h("img",
-            { src: URL.createObjectURL(state.file)
-            , onload: function () { URL.revokeObjectURL(this.src) }})
-          : "add media...") ])
+      , state.file
+        ? $.h("img",
+          { src: URL.createObjectURL(state.file)
+          , onload: function () { URL.revokeObjectURL(this.src) }})
+        : $.h(".mediaUploaderAdd", "add media...") ])
   }
 
   function pickFile () {
