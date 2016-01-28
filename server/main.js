@@ -8,7 +8,7 @@
 
   server.http.on('listening', function () {
     console.log('open ' + $.options.host + ':' + $.options.port +
-      ' in default browser')
+      ' in your browser')
   })
 
   server.socket.on("connection", function (socket) { $.connect(socket) });

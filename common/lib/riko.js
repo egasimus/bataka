@@ -1,1 +1,1 @@
-require('riko')
+require('riko-mvc')

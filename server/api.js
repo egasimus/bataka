@@ -1,4 +1,4 @@
-require('q-api/server')(function () {
+require('riko-api/server')(function () {
   return {
     "subscribe": function (cb) {
       if (cb) $.state(function (state) { cb(JSON.stringify(state)) })
@@ -14,10 +14,7 @@ require('q-api/server')(function () {
     "reply":  function (thread, post) {
       post = JSON.parse(post)
       post.time = new Date(Date.parse(post.time))
-      // TODO fix detection for observ-array
-      posts = $.state.threads[thread].posts();
-      posts.push(post);
-      $.state.threads[thread].posts.set(posts);
+      $.state.threads[thread].posts.push(post);
     }
   }
 })

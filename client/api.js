@@ -1,2 +1,2 @@
-require("q-api/client")(function () {
+require("riko-api/client")(function () {
   return $.state.connection() })
