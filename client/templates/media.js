@@ -5,18 +5,20 @@
   var widget =
     { type:
         "Widget"
+    , element:
+        null
     , state:
         { id:      id
         , updates: 0 }
     , init:
         function () {
-          return render(this.state);
+          return this.element = render(this.state);
         }
     , update:
         function (previous, element) {
           this.state = previous.state;
           this.state.updates++;
-          return render(this.state, previous, element);
+          return this.element = render(this.state, previous);
         }
     , destroy:
         function (element) {
@@ -25,12 +27,12 @@
 
   return widget;
 
-  function render (state, previous, element) {
+  function render (state, previous) {
     if (!previous) {
       return vdom.create(template(state));
     } else {
-      vdom.patch(element, vdom.diff(previous, template(widget.state)))
-      return element;
+      return vdom.patch(previous.element,
+        vdom.diff(previous, template(widget.state)))
     }
   }
 
@@ -51,7 +53,7 @@
     if (!type.test(file.type)) $.lib.error("can only upload images")()
     console.log("file", file);
     widget.state.file = file;
-    widget = widget.update(widget, widget.element)
+    render(widget.state, widget)
   }
 
 })
