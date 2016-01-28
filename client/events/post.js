@@ -7,7 +7,7 @@
 
   var text = document.getElementById(textareaId).value.trim()
     , user = document.getElementById("username").value
-    , pass = document.getElementById("password").value
+    , pass = "" // document.getElementById("password").value
 
   if (text !== "") {
 
