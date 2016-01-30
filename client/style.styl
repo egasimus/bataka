@@ -47,25 +47,39 @@ button
   textarea, button
     height 36px
     vertical-align top
-  .mediaUploader
-    max-width 200px
-    max-height 200px
+
+.mediaUploader
+  max-width 200px
+  max-height 200px
+  font-size 0.7em
+  display inline-block
+  cursor pointer
+  border-right none
+  text-transform uppercase
+  input[type=file]
+    display none
+  img
+    max-width 100%
+    max-height 100%
+  &Add
     line-height 36px
-    font-size 0.7em
-    display inline-block
-    cursor pointer
+    border 1px dotted #aaa
     border-right none
-    text-transform uppercase
-    input[type=file]
-      display none
-    img
-      max-width 100%
-      max-height 100%
-    &Add
-      border 1px dotted #aaa
-      border-right none
-      line-height 34px
-      padding 0 5px 0 6px
+    line-height 34px
+    padding 0 5px 0 6px
+  &Cancel
+    position absolute
+    background #c32
+    color #fff
+    font-weight bold
+    top 6px
+    right 6px
+    padding 3px 6px
+    z-index 1
+    border-radius 1px
+    display none
+  &:hover &Cancel
+    display block
 
 .thread
   padding 6px
