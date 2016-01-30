@@ -5,6 +5,6 @@
 
   return $.h(".app",
     [ _.status(state)
-    , $.h(".content", [_.form()].concat(threads)) ]);
+    , $.h(".content", [_.form()].concat(threads.reverse())) ]);
 
 })

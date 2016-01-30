@@ -5,6 +5,10 @@
   var widget =
     { type:
         "Widget"
+    , name:
+        "BatakaMediaWidget"
+    , id:
+        "BatakaMediaWidget"
     , element:
         null
     , state:
@@ -12,13 +16,13 @@
         , updates: 0 }
     , init:
         function () {
-          return this.element = render(this.state);
+          return this.element = vdom.create(template(this.state));
         }
     , update:
         function (previous, element) {
+          console.log("update", this.state.id, previous.state)
           this.state = previous.state;
-          this.state.updates++;
-          return this.element = render(this.state, previous);
+          this.element = vdom.patch(element || previous.element, vdom.diff(template(previous.state), template(this.state)))
         }
     , destroy:
         function (element) {
@@ -28,16 +32,8 @@
 
   return widget;
 
-  function render (state, previous) {
-    if (!previous) {
-      return vdom.create(template(state));
-    } else {
-      return vdom.patch(previous.element,
-        vdom.diff(previous, template(widget.state)))
-    }
-  }
-
   function template (state) {
+    console.log("render", state)
     return $.h(".mediaUploader", { onclick: pickFile },
       [ $.h("input#upload_" + state.id, { type: 'file', onchange: filePicked })
       , state.file
@@ -57,7 +53,11 @@
     if (!type.test(file.type)) $.lib.error("can only upload images")()
     console.log("file", file);
     widget.state.file = file;
-    render(widget.state, widget)
+    console.log(widget.element, id)
+    var newElement = vdom.create(template(widget.state));
+    console.log(this.parentElement)
+    this.parentElement.parentElement.replaceChild(newElement, this.parentElement)
+    widget.element = newElement;
   }
 
 })
