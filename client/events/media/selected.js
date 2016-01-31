@@ -1,4 +1,3 @@
 (function (id, file) {
-  var thread = id ? $.state.threads[id] : $.state;
-  $.util.localState(thread).put("file", file);
+  $.util.localState(id ? $.state.threads[id] : $.state).put("file", file);
 })

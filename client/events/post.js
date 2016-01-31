@@ -2,10 +2,9 @@
 
   event.preventDefault();
 
-  var textareaId  = threadId ? "replyText_" + threadId : "submitText"
-    , fileFieldId = "upload_" + (threadId || "undefined")
-
-  var text = document.getElementById(textareaId).value.trim()
+  var textareaId = threadId ? "replyText_" + threadId : "submitText"
+    , textarea = document.getElementById(textareaId)
+    , text = document.getElementById(textareaId).value.trim()
     , user = document.getElementById("username").value
     , pass = false // document.getElementById("password").value
 
@@ -25,8 +24,27 @@
       $.state.threads.put(data.id, data);
     }
 
+    var local = $.util.localState(threadId ? $.state.threads[threadId] : $.state);
+    var fd = new FormData();
+    fd.append("img", local().file)
+    var xhr = new XMLHttpRequest();
+    xhr.upload.onprogress = function (evt) {
+      if (evt.lengthComputable) local.put("uploadProgress",
+        Math.round((e.loaded * 100) / e.total))
+    }
+    xhr.upload.onload = function (evt) {
+      local.put(uploadProgress, 100)
+      console.log("uploaded", evt)
+    }
+    console.log(fd, xhr)
+    xhr.open("POST", "https://ipfs.pics/upload.php")
+
     $.lib.q.done($.api("post", threadId, JSON.stringify(data)),
-      function (result) { console.log("submitted") },
+      function (result) {
+        console.log("submitted")
+        textarea.value = '';
+        local.put("file", null);
+      },
       $.lib.error("could not submit"));
 
   }
