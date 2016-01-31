@@ -1,4 +1,4 @@
-(function (id, files) {
-  $.state.media.put(id, $.state.media()[id] || {})
-  $.state.media[id].put('file', files[0]);
+(function (id, file) {
+  var thread = id ? $.state.threads[id] : $.state;
+  $.util.localState(thread).put("file", file);
 })

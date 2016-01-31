@@ -1,13 +1,14 @@
-(function (id, media) {
+(function (thread) {
 
-  media = media || {}
+  var id = thread ? thread.id : undefined
+    , local = thread ? (thread.local || {}) : ($.state().local || {});
 
-  var preview = media.file
+  var preview = local.file
       ? [ $.h(".mediaUploaderCancel", 
             { onclick: $.emit("media/remove", id) },
             "remove")
         , $.h("img",
-            { src: URL.createObjectURL(media.file)
+            { src: URL.createObjectURL(local.file)
             , onclick: $.emit("media/select", id)
             , onload: function () { URL.revokeObjectURL(this.src) }})
         ]

@@ -14,9 +14,6 @@ $.lib.riko.M({
     { id: $.lib.shortid() },
 
   threads:
-    {},
-
-  media:
     {}
 
 })

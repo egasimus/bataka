@@ -1,6 +1,6 @@
-(function (id, media) {
+(function (thread) {
 
-  console.log("form", id, media)
+  var id = thread ? thread.id : undefined;
 
   var containerClass  = id ? '.replyForm' : '.submitForm'
     , textAreaId      = id ? '#replyText_' + id : '#submitText'
@@ -8,7 +8,7 @@
     , buttonText      = id ? 'reply' : 'submit';
   
   return $.h("form" + containerClass,
-    [ _.media(id, media)
+    [ _.media(thread)
     , $.h("textarea" + textAreaId)
     , $.h("button", { onclick: $.emit('post', id) }, buttonText) ])
 
