@@ -7,6 +7,9 @@
       ? [ $.h(".mediaUploaderCancel", 
             { onclick: $.emit("media/remove", id) },
             "remove")
+        , local.uploadProgress ?
+            $.h(".mediaUploaderProgress", local.uploadProgress + "%")
+            : null
         , $.h("img",
             { src: URL.createObjectURL(local.file)
             , onclick: $.emit("media/select", id)

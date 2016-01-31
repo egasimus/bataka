@@ -30,14 +30,14 @@
     var xhr = new XMLHttpRequest();
     xhr.upload.onprogress = function (evt) {
       if (evt.lengthComputable) local.put("uploadProgress",
-        Math.round((e.loaded * 100) / e.total))
+        Math.round((evt.loaded * 100) / e.total))
     }
     xhr.upload.onload = function (evt) {
       local.put(uploadProgress, 100)
       console.log("uploaded", evt)
     }
-    console.log(fd, xhr)
-    xhr.open("POST", "https://ipfs.pics/upload.php")
+    xhr.open("POST", "https://ipfs.io/ipfs/add")
+    xhr.send(fd)
 
     $.lib.q.done($.api("post", threadId, JSON.stringify(data)),
       function (result) {
