@@ -24,28 +24,16 @@
       $.state.threads.put(data.id, data);
     }
 
-    var local = $.util.localState(threadId ? $.state.threads[threadId] : $.state);
-    var fd = new FormData();
-    fd.append("img", local().file)
-    var xhr = new XMLHttpRequest();
-    xhr.upload.onprogress = function (evt) {
-      if (evt.lengthComputable) local.put("uploadProgress",
-        Math.round((evt.loaded * 100) / e.total))
-    }
-    xhr.upload.onload = function (evt) {
-      local.put(uploadProgress, 100)
-      console.log("uploaded", evt)
-    }
-    xhr.open("POST", "https://ipfs.io/ipfs/add")
-    xhr.send(fd)
-
-    $.lib.q.done($.api("post", threadId, JSON.stringify(data)),
+    $.lib.q.done($.lib.q.all(
+      [ $.api("post", threadId, JSON.stringify(data))
+      , $.util.uploadIpfs(threadId) ],
       function (result) {
         console.log("submitted")
         textarea.value = '';
-        local.put("file", null);
+        local.delete("file");
+        local.delete("uploadProgress");
       },
-      $.lib.error("could not submit"));
+      $.lib.error("could not submit")));
 
   }
 
