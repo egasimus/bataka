@@ -9,10 +9,11 @@
 
     var reader = new FileReader();
     reader.onload = function (event) {
-      $.lib.ipfs.add(event.result, function (err, res) {
-        if (err || !res) fail(err);
-        win(res)
-      })
+      $.lib.ipfs.add(new (require('buffer').Buffer)(this.result),
+        function (err, hash) {
+          if (err || !hash) fail(err);
+          win(hash)
+        })
     }
     reader.onerror = function (err) {
       fail(err)
