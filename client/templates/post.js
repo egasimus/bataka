@@ -1,6 +1,6 @@
 (function (post) {
 
-  var media = post.image ? $.h(".postImage", $.h("img", { src: post.image })) : null
+  var media = post.media ? _.media(post) : null
     , body = $.h(".postBody",
       [ $.h("img.postUserPic", { src: "http://www.placecage.com/c/32/32" })
       , $.h("span.postUserName", post.user || $.h("em", "onanimus"))

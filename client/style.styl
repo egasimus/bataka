@@ -43,6 +43,7 @@ button
   padding-right 240px
 
 .replyForm, .submitForm
+  clear both
   padding 6px
   textarea, button
     height 36px
@@ -50,7 +51,6 @@ button
 
 .mediaUploader
   max-width 200px
-  max-height 200px
   font-size 0.7em
   display inline-block
   cursor pointer
@@ -87,8 +87,10 @@ button
 .thread
   padding 6px
   border-top 1px solid #ccc
+  clear both
 
 .post
+  clear both
   padding-left 12px
 
   &:first-of-type
@@ -115,3 +117,11 @@ button
 
   &Text
     white-space pre-line
+
+  &Media
+    float left
+    max-width 300px
+    margin-right 6px
+    > img
+      max-width 100%
+      max-height 100%

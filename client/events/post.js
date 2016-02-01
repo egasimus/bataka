@@ -8,7 +8,9 @@
     , user = document.getElementById("username").value
     , pass = false // document.getElementById("password").value
 
-  if (text !== "") {
+  var local = $.util.localState(threadId ? $.state.threads[threadId] : $.state)
+
+  if (text !== "" || local().file) {
 
     var data =
       { id:   $.lib.shortid()
@@ -24,16 +26,24 @@
       $.state.threads.put(data.id, data);
     }
 
-    $.lib.q.done($.lib.q.all(
-      [ $.api("post", threadId, JSON.stringify(data))
-      , $.util.uploadIpfs(threadId) ],
-      function (result) {
-        console.log("submitted")
-        textarea.value = '';
-        local.delete("file");
-        local.delete("uploadProgress");
-      },
-      $.lib.error("could not submit")));
+    var submitted = local().file
+      ? $.util.uploadIpfs(threadId).then(function (hash) {
+          console.log("uploaded to ipfs", hash);
+          var post = threadId ? data : data.posts[0];
+          post["mediaType"] = "ipfs";
+          post["media"] = hash;
+        }).then(function (post) {
+          console.log(data)
+          return $.api("post", threadId, JSON.stringify(data));
+        })
+      : $.api("post", threadId, JSON.stringify(data));
+
+    submitted.then(function (result) {
+      console.log("submitted")
+      local.delete("file");
+      local.delete("uploadProgress");
+      textarea.value = '';
+    }).catch($.lib.error("could not submit")).done()
 
   }
 
