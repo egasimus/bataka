@@ -1,9 +1,16 @@
 (function () {
 
   // connect to server
-  var socket = new WebSocket("ws://" + window.location.host);
-  socket.onclose = function () { $.state.server.set(false) };
-  socket.onopen  = function () { $.state.server.set(true)  };
+  var keepAlive
+    , socket = new WebSocket("ws://" + window.location.host);
+  socket.onclose = function () {
+    if (keepAlive) keepAlive = window.clearInterval(keepAlive)
+    $.state.server.set(false)
+  };
+  socket.onopen  = function () {
+    keepAlive = window.setInterval(function () { socket.send("ping"); }, 30000)
+    $.state.server.set(true)
+  };
   $.state.connection.set(require('q-connection')(socket));
 
   // subscribe to server-side persistence store
