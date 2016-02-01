@@ -13,7 +13,11 @@ body, input, textarea, button, table, select
   line-height 1.7142857
 
 textarea
+  background none
+  border 1px dotted #aaa
   padding 0 6px
+  &:focus
+    outline none
 
 button
   background #ccc
@@ -64,7 +68,8 @@ button
   &Add
     line-height 36px
     border 1px dotted #aaa
-    border-right none
+    margin-right -1px
+    margin-bottom -1px
     line-height 34px
     padding 0 5px 0 6px
   &Progress, &Cancel

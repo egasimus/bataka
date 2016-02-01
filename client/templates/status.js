@@ -3,10 +3,15 @@
   var p2p = state.p2p.broker && state.p2p.broker.open
     , ppl = state.people / 2; // counts socket connections, which are 2 per user
 
-  if (ppl < 0)                   { ppl = "less than zero people online. само нечовеци. or rather a bug" }
-  if (ppl === 0 && state.server) { ppl = "if a tree falls in a forest and nobody is there to hear it, does it make a sound?" }
-  if (ppl === 1)                 { ppl = "you are alone ... better post something!" }
-  if (ppl > 1)                   { ppl = "~ " + ppl + " people here" }
+  if (ppl < 0) {
+    ppl = "less than zero people online. само нечовеци. or rather a bug"
+  } else if (ppl === 0 && state.server) {
+    ppl = "if a tree falls in a forest and nobody is there to hear it, does it make a sound?"
+  } else if (ppl === 1) {
+    ppl = "you are alone ... better post something!"
+  } else {
+    ppl = "~ " + ppl + " people here"
+  }
 
   return $.h(".status",
     [ $.h(".statusItem", [ $.h("input#username", { type: "text", placeholder: "onanimus" }) ])
