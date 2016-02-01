@@ -13,6 +13,9 @@ $.lib.riko.M({
   user:
     { id: $.lib.shortid() },
 
+  people:
+    0,
+
   threads:
     {}
 
