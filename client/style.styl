@@ -36,13 +36,6 @@ button
   z-index 1
   background #ddd
   padding 6px 0
-  &Item
-    font-size 0.87em
-    text-align center
-    line-height 18px
-    padding 4px 0
-    text-transform uppercase
-    color #777
   input[type=text], input[type=password]
     border 1px solid #aaa
     padding 0 3px
@@ -51,6 +44,29 @@ button
   input[type=password]
     border-top none
     font-size 0.7em
+  &Item, &Thread
+    font-size 0.87em
+    line-height 18px
+  &Item
+    padding 4px 0
+    text-align center
+    text-transform uppercase
+    color #777
+  &Threads
+    margin-top 6px
+  &Thread
+    padding 4px 6px
+    white-space nowrap
+    overflow hidden
+    cursor pointer
+    &:hover
+      background white
+    &User, &Text
+      display inline-block
+    &User
+      font-weight bold
+      margin-right 3px
+
 
 .content
   padding-right 240px

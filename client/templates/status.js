@@ -20,5 +20,18 @@
     , $.h(".statusItem", ppl)
     //, $.h(".statusItem", (p2p          ? "" : "not ") + "connected to peer broker")
     //, $.h(".statusItem", "connected to " + state.p2p.peers.length + " peers") ])
+    , $.h(".statusThreads", Object.keys(state.threads).reverse().map(statusThread))
     ])
+
+  function statusThread (threadId) {
+    var thread = state.threads[threadId]
+      , first  = thread.posts[0]
+      , last   = thread.posts[thread.posts.length - 1];
+    return $.h(".statusThread",
+      [ $.h(".statusThreadText", first.text)
+      , first === last ? null : $.h("div",
+        [ $.h(".statusThreadUser", last.user || $.h("em", "onan."))
+        , $.h(".statusThreadText", last.text) ])])
+  }
+
 })
