@@ -14,7 +14,7 @@
   }
 
   return $.h(".status",
-    [ $.h(".statusItem", [ $.h("input#username", { type: "text", placeholder: "onanimus" }) ])
+    [ $.h("input#username", { type: "text", placeholder: "onanimus" })
     //, $.h(".statusItem", [ $.h("input#password", { type: "password", placeholder: "secret (for tripcode)" }) ])
     , $.h(".statusItem", (state.server ? "" : "not ") + "connected to server")
     , $.h(".statusItem", ppl)
