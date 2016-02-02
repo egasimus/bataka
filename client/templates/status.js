@@ -31,7 +31,7 @@
       [ $.h(".statusThreadUser", first.user || $.h("em", "onan."))
       , $.h(".statusThreadText", first.text || $.h("em", "(кура ми янко)"))
       , first === last ? null : $.h("div",
-        [ 
+        [ $.h(".statusThreadUser", last.user || $.h("em", "onan."))
         , $.h(".statusThreadText", last.text || $.h("em", "(кура ми янко)")) ])])
   }
 
