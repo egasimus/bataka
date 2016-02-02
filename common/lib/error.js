@@ -6,7 +6,7 @@
       console.log(e.message)
       console.log(e.stack)
     } else {
-      console.error(e)
+      console.error(msg, e)
     }
   }
 })

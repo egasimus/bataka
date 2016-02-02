@@ -8,9 +8,10 @@
     , user = document.getElementById("username").value
     , pass = false // document.getElementById("password").value
 
-  var local = $.util.localState(threadId ? $.state.threads[threadId] : $.state)
+  var local  = $.util.localState(threadId ? $.state.threads[threadId] : $.state)
+    , _local = local()
 
-  if (text !== "" || local().file) {
+  if (text !== "" || _local.file) {
 
     var data =
       { id:   $.lib.shortid()
@@ -26,24 +27,23 @@
       $.state.threads.put(data.id, data);
     }
 
-    var submitted = local().file
+    var submitted = _local.file
       ? $.util.uploadIpfs(threadId).then(function (hash) {
           console.log("uploaded to ipfs", hash);
           var post = threadId ? data : data.posts[0];
-          post["mediaType"] = "ipfs";
-          post["media"] = hash;
-        }).then(function (post) {
-          console.log(data)
+          post.media = { service: "ipfs", address: hash, type: _local.file }
+        }).then(function () {
+          console.log("posting", data)
           return $.api("post", threadId, JSON.stringify(data));
         })
       : $.api("post", threadId, JSON.stringify(data));
 
-    submitted.then(function (result) {
+    submitted.catch($.lib.error("could not submit")).then(function (result) {
       console.log("submitted")
       local.delete("file");
       local.delete("uploadProgress");
       textarea.value = '';
-    }).catch($.lib.error("could not submit")).done()
+    }).done()
 
   }
 
