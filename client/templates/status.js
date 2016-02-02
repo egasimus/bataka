@@ -6,7 +6,7 @@
   if (ppl < 0) {
     ppl = "less than zero people online. само нечовеци. or rather a bug"
   } else if (ppl === 0 && state.server) {
-    ppl = "if a tree falls in a forest and nobody is there to hear it, does it make a sound?"
+    ppl = "if a tree falls in a forest and nobody is there to hear it, do the crushed squirrels make a sound?"
   } else if (ppl === 1) {
     ppl = "you are alone. better post something! this will make you less alone."
   } else {

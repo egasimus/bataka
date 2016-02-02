@@ -31,7 +31,7 @@
       ? $.util.uploadIpfs(threadId).then(function (hash) {
           console.log("uploaded to ipfs", hash);
           var post = threadId ? data : data.posts[0];
-          post.media = { service: "ipfs", address: hash, type: _local.file }
+          post.media = { service: "ipfs", type: _local.file.type, src: hash }
         }).then(function () {
           console.log("posting", data)
           return $.api("post", threadId, JSON.stringify(data));

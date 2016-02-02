@@ -13,6 +13,6 @@
       return $.h("a", { href: url, target: "_blank" },
         $.h("img.postMediaImage", { src: url }))
     },
-  }[post.mediaType](post.media || null));
+  }[post.media.service](post.media.src || null));
 
 })
