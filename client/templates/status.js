@@ -28,9 +28,10 @@
       , first  = thread.posts[0]
       , last   = thread.posts[thread.posts.length - 1];
     return $.h(".statusThread",
-      [ $.h(".statusThreadText", first.text || $.h("em", "(кура ми янко)"))
+      [ $.h(".statusThreadUser", first.user || $.h("em", "onan."))
+      , $.h(".statusThreadText", first.text || $.h("em", "(кура ми янко)"))
       , first === last ? null : $.h("div",
-        [ $.h(".statusThreadUser", last.user || $.h("em", "onan."))
+        [ 
         , $.h(".statusThreadText", last.text || $.h("em", "(кура ми янко)")) ])])
   }
 
