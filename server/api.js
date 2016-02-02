@@ -15,6 +15,10 @@ require('riko-api/server')(function () {
         })
         $.state.threads.put(data.id, data);
       }
-    }
+    },
+    //"import": function (data) {
+      //data = JSON.parse(data)
+      //$.state.set(data)
+    //}
   }
 })
