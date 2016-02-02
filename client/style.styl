@@ -51,10 +51,13 @@ button
 
 .replyForm, .submitForm
   clear both
-  padding 6px
+  margin 12px 0
   textarea, button
     height 36px
     vertical-align top
+
+.submitForm
+  margin 12px
 
 .mediaUploader
   max-width 200px
@@ -100,45 +103,32 @@ button
 .post
   clear both
   margin 12px 0
-  //padding-left 12px
-
-  //&:first-of-type
-    //padding-left 0
-
   &:after
     display table
     content ''
     clear both
-
   &UserPic
     margin-right 3px
     vertical-align top
     float left
-
   &UserName, &Info, &Date, &TripCode
     display inline-block
     vertical-align baseline
-
   &UserName
     font-weight bold
     padding-right 12px
-
   &Info
     color #ccc
     font-size 0.7em
-
+  &:hover &Info
+    color #888
   &Date
     padding-left 12px
     text-decoration none
     &:hover
       text-decoration underline
-
-  &:hover &Info
-    color #888
-
   &Text
     white-space pre-line
-
   &Media
     float left
     max-width 300px
