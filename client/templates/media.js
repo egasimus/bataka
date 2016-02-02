@@ -9,7 +9,7 @@
         $.h("img.postMediaImage", { src: url }))
     },
     "ipfs": function (hash) {
-      var url = "http://gateway.ipfs.io/ipfs/" + hash;
+      var url = "http://egregor.es/wiki/ipfs/" + hash;
       return $.h("a", { href: url, target: "_blank" },
         $.h("img.postMediaImage", { src: url }))
     },
