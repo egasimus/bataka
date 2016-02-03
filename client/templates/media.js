@@ -1,6 +1,6 @@
 (function (post) {
 
-  return $.h(".postMedia", {
+  var services = {
     null: function () {
       return null
     },
@@ -13,6 +13,12 @@
       return $.h("a", { href: url, target: "_blank" },
         $.h("img.postMediaImage", { src: url }))
     },
-  }[post.media.service](post.media.src || null));
+  }
+
+  if (post.media && post.media.service && post.media.src) {
+    var service = services[post.media.service]
+      , media   = service(post.media.src);
+    return $.h(".postMedia", media);
+  }
 
 })

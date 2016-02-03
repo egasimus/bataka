@@ -38,12 +38,13 @@
         })
       : $.api("post", threadId, JSON.stringify(data));
 
-    submitted.catch($.lib.error("could not submit")).then(function (result) {
+    submitted.done(afterSubmit);
+    function afterSubmit (result) {
       console.log("submitted")
       local.delete("file");
       local.delete("uploadProgress");
       textarea.value = '';
-    }).done()
+    }
 
   }
 
