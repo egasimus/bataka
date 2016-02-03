@@ -5,19 +5,27 @@
       return null
     },
     "http": function (url) {
-      return $.h("a", { href: url, target: "_blank" },
-        $.h("img.postMediaImage", { src: url }))
+      return url;
     },
     "ipfs": function (hash) {
-      var url = $.options.ipfsGateway + hash;
-      return $.h("a", { href: url, target: "_blank" },
-        $.h("img.postMediaImage", { src: url }))
+      return $.options.ipfsGateway + hash;
     },
   }
 
-  if (post.media && post.media.service && post.media.src) {
-    var service = services[post.media.service]
-      , media   = service(post.media.src);
+  var types = {
+    null: function (url) {
+      return $.h("img.postMediaImage", { src: url })
+    },
+    "audio/mpeg": function (url) {
+      return $.h("audio.postMediaAudio", { src: url, controls: "controls" })
+    }
+  }
+
+  if (post.media && post.media.src) {
+    var service = services[post.media.service] || services[null]
+      , url     = service(post.media.src)
+      , type    = types[post.media.type] || types[null]
+      , media   = type(url);
     return $.h(".postMedia", media);
   }
 
