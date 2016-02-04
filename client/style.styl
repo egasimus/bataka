@@ -81,7 +81,6 @@ button
   margin 12px
 
 .mediaUploader
-  max-width 200px
   font-size 0.7em
   display inline-block
   cursor pointer
@@ -99,8 +98,9 @@ button
     margin-bottom -1px
     line-height 34px
     padding 0 5px 0 6px
+  &Preview
+    max-width 300px
   &Progress, &Cancel
-    position absolute
     z-index 1
     padding 3px 6px
     border-radius 1px
@@ -110,11 +110,6 @@ button
     background #2c3
   &Cancel
     background #c32
-    top 6px
-    right 6px
-    display none
-  &:hover &Cancel
-    display block
 
 .thread
   padding 0 12px
@@ -155,6 +150,6 @@ button
     max-width 300px
     margin-right 6px
     z-index 1
-    &Image
+    &Image, &Audio, &Video
       max-width 100%
       max-height 100%

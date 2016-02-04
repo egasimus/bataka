@@ -1,8 +1,11 @@
-(function (post) {
+(function (media) {
 
   var services = {
     null: function () {
       return null
+    },
+    "blob": function (url) {
+      return url;
     },
     "http": function (url) {
       return url;
@@ -14,13 +17,13 @@
 
   var types = {
     null: function (url) { return $.h("img.postMediaImage", { src: url }) },
-    "audio/wav": audio,
-    "audio/ogg": audio,
-    "audio/mp3": audio,
+    "audio/wav":  audio,
+    "audio/ogg":  audio,
+    "audio/mp3":  audio,
     "audio/mpeg": audio,
     "video/webm": video,
-    "video/ogg": video,
-    "video/mp4": video,
+    "video/ogg":  video,
+    "video/mp4":  video,
     "video/mpeg": video
   }
 
@@ -32,12 +35,12 @@
     return $.h("video.postMediaVideo", { src: url, controls: "controls" })
   }
 
-  if (post.media && post.media.src) {
-    var service = services[post.media.service] || services[null]
-      , url     = service(post.media.src)
-      , type    = types[post.media.type] || types[null]
+  if (media && media.src) {
+    var service = services[media.service] || services[null]
+      , url     = service(media.src)
+      , type    = types[media.type] || types[null]
       , media   = type(url);
-    return $.h(".postMedia", media);
+    return media;
   }
 
 })
