@@ -14,7 +14,11 @@
   //}
 
   return $.h(".status",
-    [ $.h("input#username", { type: "text", placeholder: "onanimus" })
+    [ $.h("input#username",
+        { type: "text"
+        , placeholder: "onanimus"
+        , value: $.state.user.nick()
+        , onchange: $.emit("username") })
     //, $.h(".statusItem", [ $.h("input#password", { type: "password", placeholder: "secret (for tripcode)" }) ])
     , $.h(".statusItem", (state.server ? "" : "not ") + "connected to server")
     //, $.h(".statusItem", ppl)

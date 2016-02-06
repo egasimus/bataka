@@ -10,8 +10,9 @@ $.lib.riko.M({
     { broker: null
     , peers: [] },
 
-  user:
-    { id: $.lib.shortid() },
+  user: $.util.storageGet("user",
+    { id:   $.lib.shortid()
+    , nick: null }),
 
   people:
     0,
