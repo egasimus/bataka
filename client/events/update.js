@@ -7,4 +7,6 @@
     $.state.put(key, val);
   })
 
+  $.util.storageSet('threads', $.state.threads());
+
 })

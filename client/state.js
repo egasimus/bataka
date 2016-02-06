@@ -17,7 +17,7 @@ $.lib.riko.M({
   people:
     0,
 
-  threads:
-    {}
+  threads: $.util.storageGet("threads",
+    {})
 
 })
