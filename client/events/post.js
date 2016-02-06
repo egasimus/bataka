@@ -40,6 +40,7 @@
 
     submitted.done(afterSubmit);
     function afterSubmit (result) {
+      var local  = $.util.localState(threadId ? $.state.threads[threadId] : $.state)
       console.log("submitted")
       local.delete("file");
       local.delete("uploadProgress");
