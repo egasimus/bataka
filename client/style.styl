@@ -118,12 +118,27 @@ button
   clear both
 
 .post
-  clear both
   margin 12px 0
-  &:after
-    display table
-    content ''
-    clear both
+  display flex
+  flex-direction row
+  &Text
+    white-space pre-line
+    & > p
+      margin 0
+    & > ul, & > ol
+      font-size 0
+      line-height 0
+      & > li
+        font-size 14px
+        line-height 18px
+  &Media
+    max-width 300px
+    margin-right 6px
+    z-index 1
+    flex-shrink 0
+    &Image, &Audio, &Video
+      max-width 100%
+      max-height 100%
   &UserPic
     margin-right 3px
     vertical-align top
@@ -143,15 +158,3 @@ button
     text-decoration none
     &:hover
       text-decoration underline
-  &Text
-    white-space pre-line
-    & > p
-      margin 0
-  &Media
-    float left
-    max-width 300px
-    margin-right 6px
-    z-index 1
-    &Image, &Audio, &Video
-      max-width 100%
-      max-height 100%
