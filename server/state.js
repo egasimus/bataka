@@ -13,22 +13,28 @@
             , user: "iniziador"
             , trip: "TRIPKOD: IBO VAISTENU"
             , time: "DATA: FNA4ALOTO"
-            , mediaType: "ipfs"
-            , media: "QmUHAZMsZ5jd6mvtx5QW1HKs9BChyk327joDB2sW2bkhod"
+            , media:
+              { service: "ipfs"
+              , type: "image"
+              , src: "QmUHAZMsZ5jd6mvtx5QW1HKs9BChyk327joDB2sW2bkhod" }
             , text: tatuiral[0] }
           , { id: "firstPostEver2"
             , user: "iniziador"
             , trip: "TRIPKOD: IBO VAISTENU"
             , time: "DATA: FNA4ALOTO"
-            , mediaType: "ipfs"
-            , media: "Qmai5tAvGrgUQSukU5ZTvsknbFnCYCwJu41pHngeS8aaHn"
+            , media:
+              { service: "ipfs"
+              , type: "image"
+              , src: "Qmai5tAvGrgUQSukU5ZTvsknbFnCYCwJu41pHngeS8aaHn" }
             , text: tatuiral[1] }
           , { id: "firstPostEver3"
             , user: "iniziador"
             , trip: "TRIPKOD: IBO VAISTENU"
             , time: "DATA: FNA4ALOTO"
-            , mediaType: "ipfs"
-            , media: "QmPkUDfoF1Atdn6dJfVvseGk4oM38GgLt4AgeGhh1FHgK2"
+            , media:
+              { service: "ipfs"
+              , type: "image"
+              , src: "QmPkUDfoF1Atdn6dJfVvseGk4oM38GgLt4AgeGhh1FHgK2" }
             , text: tatuiral[2] }
             ]} },
 
