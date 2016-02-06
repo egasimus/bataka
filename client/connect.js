@@ -2,7 +2,7 @@
 
   // connect to server
   var keepAlive
-    , socket = new WebSocket("ws://" + window.location.host);
+    , socket = new WebSocket("ws://" + window.location.host + window.location.pathname);
   socket.onclose = function () {
     if (keepAlive) keepAlive = window.clearInterval(keepAlive)
     $.state.server.set(false)
