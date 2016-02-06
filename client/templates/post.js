@@ -6,7 +6,7 @@
         $.h(".postUserName", post.user || $.h("em", "onanimus"))
       , $.h("span.postText", post.text)
       , $.h("span.postInfo",
-          [ $.h("a.postDate", { href: "#" + post.id }, String(post.time))
+          [ $.h("a.postDate", { href: "#post_" + post.id }, String(post.time))
           , post.trip ? " - " : null
           , post.trip ? $.h("span.postTripCode", post.trip) : null ])
       ])
