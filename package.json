@@ -11,6 +11,7 @@
     "glagol": "git+https://github.com/egasimus/glagol.git",
     "glagol-web": "git+https://github.com/egasimus/glagol-web.git",
     "ipfs-js": "0.0.7",
+    "lazysizes": "^1.4.0",
     "peer": "^0.2.8",
     "peerjs": "^0.3.14",
     "q": "^1.4.1",
