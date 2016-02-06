@@ -27,7 +27,7 @@
     var thread = state.threads[threadId]
       , first  = thread.posts[0]
       , last   = thread.posts[thread.posts.length - 1];
-    return $.h(".statusThread",
+    return $.h("a.statusThread", { href: '#thread_' + thread.id },
       [ $.h(".statusThreadUser", first.user || $.h("em", "onan."))
       , $.h(".statusThreadText", first.text || $.h("em", "(кура ми янко)"))
       , first === last ? null : $.h("div",
