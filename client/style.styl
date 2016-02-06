@@ -12,6 +12,15 @@ body, input, textarea, button, table, select
   font-size 14px
   line-height 18px
 
+input[type=text], input[type=password]
+  border 1px solid #aaa
+  border-top none
+  background none
+  text-align center
+  &:focus
+    outline none
+    border-color white
+
 textarea
   background none
   border 1px dotted #aaa
@@ -37,7 +46,7 @@ button
   background #ddd
   padding 6px 0
   input[type=text], input[type=password]
-    border 1px solid #aaa
+    font-weight bold
     padding 0 3px
     display block
     margin 6px auto
@@ -150,11 +159,13 @@ button
     font-weight bold
   &Date, &TripCode
     color #ccc
-    font-size 0.7em
+    font-size 0.8em
   &:hover &Date, &:hover &TripCode
     color #888
   &Date
-    padding-left 12px
+    padding 0 3px
+    margin 0 3px
     text-decoration none
     &:hover
-      text-decoration underline
+      border-bottom 1px solid #ccc
+      margin-bottom -1px
