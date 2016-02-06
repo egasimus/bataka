@@ -6,6 +6,7 @@
   var containerClass = id ? '.replyForm'       : '.submitForm'
     , textAreaId     = id ? '#replyText_' + id : '#submitText'
     , fileFieldId    = id ? '#replyFile_' + id : '#submitFile'
+    , formId         = id ? '#replyForm_' + id : '#submitForm'
     , buttonText     = id ? 'reply'            : 'submit';
 
   var media = $.h(".mediaUploader", local.file
@@ -22,7 +23,7 @@
         { onclick: $.emit("media/select", id) },
         "add media..."))
   
-  return $.h("form" + containerClass,
+  return $.h("form" + containerClass + formId,
     [ media
     , $.h("textarea" + textAreaId)
     , $.h("button", { onclick: $.emit('post', id) }, buttonText) ])

@@ -13,6 +13,10 @@
     //ppl = "~ " + ppl + " people here"
   //}
 
+  var newThread = $.h("a.statusThread", { href: "#submitForm" },
+    [ $.h(".statusThreadUser", "+ submit")
+    , $.h(".statusThreadText", "new thread...")])
+
   return $.h(".status",
     [ $.h("input#username",
         { type: "text"
@@ -24,7 +28,7 @@
     //, $.h(".statusItem", ppl)
     //, $.h(".statusItem", (p2p          ? "" : "not ") + "connected to peer broker")
     //, $.h(".statusItem", "connected to " + state.p2p.peers.length + " peers") ])
-    , $.h(".statusThreads", Object.keys(state.threads).reverse().map(statusThread))
+    , $.h(".statusThreads", [newThread].concat(Object.keys(state.threads).reverse().map(statusThread)))
     ])
 
   function statusThread (threadId) {
