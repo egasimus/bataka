@@ -13,7 +13,7 @@
 
   // start vdom main loop, initialize lazy image loader
   var view = $.lib.riko.V($.state, $.templates.app);
-  $.util.lazysizes.init();
+  //$.util.lazyLoader.init();
   document.body.innerHTML = "";
   document.body.appendChild(view.target);
   app.nodes['templates'].events.after('edited', function () { // TODO

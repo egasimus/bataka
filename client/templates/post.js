@@ -4,7 +4,7 @@
     , body = $.h(".postBody",
       [ //$.h("img.postUserPic", { src: "http://www.placecage.com/c/32/32" })
         $.h(".postUserName", post.user || $.h("em", "onanimus"))
-      , $.h("span.postText", post.text)
+      , $.h(".postText", { innerHTML: $.util.markdown(post.text) })
       , $.h("span.postInfo",
           [ $.h("a.postDate", { href: "#post_" + post.id }, String(post.time))
           , post.trip ? " - " : null
