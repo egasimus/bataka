@@ -7,8 +7,13 @@
     { onclick: $.emit(collapsed ? "expand" : "collapse", thread.id)},
     collapsed
       ? [ "[expand]" 
-        , $.h(".postUserName", firstPost.user || $.h("em", "onanimus")) 
-        , $.h(".postText", firstPost.text.slice(0, 50).concat("...")) ]
+        , $.h(".postDate",
+            String(firstPost.time || ""))
+        , $.h(".postUserName",
+            firstPost.user || $.h("em", "onanimus"))
+        , $.h(".postText",
+            firstPost.text.slice(0, 50).concat(
+              firstPost.text.length > 50 ? "..." : "")) ]
       : "[collapse]") ];
 
   if (!collapsed) {
