@@ -1,8 +1,7 @@
 (function (app) {
   var web     = require('glagol-web')
-    , resolve = require('path').resolve
-    , client  = web.app({}, resolve(__dirname, '../client'),
-                            resolve(__dirname, '../common'))
+    , resolve = require('path').resolve.bind(null, __dirname)
+    , client  = web.app({}, resolve('../client'), resolve('../common'))
     , routes  = [ web.route('/',       client.handler)
                 , web.route('/upload', _.upload) ]
     , server  = web.server($.options.host, $.options.port, routes);
