@@ -1,1 +1,1 @@
-"ipfs" // or "http"
+"http" // or "ipfs"

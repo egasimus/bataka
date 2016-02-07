@@ -21,7 +21,7 @@
           : null ]
     : $.h(".mediaUploaderAdd",
         { onclick: $.emit("media/select", id) },
-        "add media..."))
+        "upload (" + $.options.upload.type + ")"))
   
   return $.h("form" + containerClass + formId,
     [ media

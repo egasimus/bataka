@@ -20,23 +20,24 @@
   } catch (e) {
     var error = "could not open " + filePath + " for writing";
     console.error(error);
-    res.send(JSON.stringify({error:error}));
+    require('send-data/json', req, res, { error: error });
     return;
   }
 
   // receive data from incoming request
   req.on('data', onData).on('end', onEnd).on('error', onError);
 
-  function onData () {
+  function onData (chunk) {
     fileStream.write(chunk);
     receivedBytes += chunk.length;
-    console.log("uploading", fileName, receivedBytes / originalSize);
+    console.log("uploading", fileName,
+      Math.floor(100 * receivedBytes / originalSize), "%");
   }
 
   function onEnd () {
     fileStream.end();
     console.log("uploaded", fileName);
-    res.send(JSON.stringify({uploaded: fileName}))
+    require('send-data/json', req, res, { uploaded: fileName });
   }
 
   function onError () {

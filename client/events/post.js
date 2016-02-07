@@ -28,10 +28,10 @@
     }
 
     var submitted = _local.file
-      ? $.util.uploadIpfs(threadId).then(function (hash) {
-          console.log("uploaded to ipfs", hash);
+      ? $.util.upload(threadId).then(function (service, src) {
+          console.log("uploaded", submitted, "to", service, src);
           var post = threadId ? data : data.posts[0];
-          post.media = { service: "ipfs", type: _local.file.type, src: hash }
+          post.media = { service: service, type: _local.file.type, src: src }
         }).then(function () {
           console.log("posting", data)
           return $.api("post", threadId, JSON.stringify(data));
