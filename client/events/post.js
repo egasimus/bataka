@@ -28,10 +28,12 @@
     }
 
     var submitted = _local.file
-      ? $.util.upload(threadId).then(function (service, src) {
-          console.log("uploaded", submitted, "to", service, src);
+      ? $.util.upload(threadId).then(function (result) {
           var post = threadId ? data : data.posts[0];
-          post.media = { service: service, type: _local.file.type, src: src }
+          post.media =
+            { service: result[0]
+            , type:    _local.file.type
+            , src:     result[1] }
         }).then(function () {
           console.log("posting", data)
           return $.api("post", threadId, JSON.stringify(data));

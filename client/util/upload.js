@@ -6,52 +6,52 @@
       , file  = local().file;
     if (!file) fail("no file")
 
-    var reader = new FileReader();
-    reader.onload = function (event) {
-      var upload;
-      switch ($.options.upload.type) {
-        case "ipfs": upload = uploadIPFS; break;
-        case "http": upload = uploadXHR;  break;
+    switch ($.options.upload.type) {
+      case "ipfs": uploadIpfs(file); break;
+      case "http": uploadXhr(file);  break;
+    }
+
+    function uploadIpfs (file) {
+
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        $.lib.ipfs.add(
+          new (require('buffer').Buffer)(this.result),
+          function (err, hash) {
+            if (err || !hash) fail(err);
+            win(["ipfs", hash])
+          }
+        )
       }
-      upload(this.result);
-    }
-    reader.onerror = function (err) { fail(err) }
-    reader.readAsArrayBuffer(file);
+      reader.onerror = function (err) { fail(err) }
 
-    function uploadIPFS (file) {
-      $.lib.ipfs.add(
-        new (require('buffer').Buffer)(file),
-        function (err, hash) {
-          if (err || !hash) fail(err);
-          win("ipfs", hash)
-        }
-      )
+      reader.readAsArrayBuffer(file);
+
     }
 
-    function uploadXHR (file) {
+    function uploadXhr (file) {
+
+      var fd = new FormData();
+      fd.append("file", file)
+
       var xhr = new XMLHttpRequest();
-      xhr.upload.onprogress = uploadProgress;
-      xhr.upload.onerror = uploadFailed;
-      xhr.onerror = uploadFailed;
-      xhr.onload = uploadFinished;
-      xhr.open("POST", $.options.upload.url);
-      xhr.send(file);
-
-      function uploadProgress (e) {
-        if (e.lengthComputable) {
-          console.log("Upload:", Math.round(e.loaded * 100 / e.total), "%");
-        }
+      xhr.onprogress = function (event) {
+        if (event.lengthComputable) local.put("uploadProgress",
+          Math.round((event.loaded * 100) / event.total))
+      }
+      xhr.onload = function (event) {
+        local.put("uploadProgress", 100)
+        var uploaded = JSON.parse(event.target.response).uploaded[0];
+        console.log("uploaded", file.type, file.name, "as", uploaded);
+        win(["upload", uploaded]);
+      }
+      xhr.onerror = function (event) {
+        fail(event)
       }
 
-      function uploadFinished (e) {
-        console.log("Uploaded.")
-        console.log(xhr);
-      }
+      xhr.open("POST", "./upload")
+      xhr.send(fd)
 
-      function uploadFailed (e) {
-        console.log("Upload failed.")
-        console.log(xhr);
-      }
     }
 
   })
