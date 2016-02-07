@@ -3,7 +3,8 @@
     , resolve = require('path').resolve
     , client  = web.app({}, resolve(__dirname, '../client'),
                             resolve(__dirname, '../common'))
-    , routes  = [ web.route('/', client.handler) ]
+    , routes  = [ web.route('/',       client.handler)
+                , web.route('/upload', _.upload) ]
     , server  = web.server($.options.host, $.options.port, routes);
 
   server.http.on('listening', function () {

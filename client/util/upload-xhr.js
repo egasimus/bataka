@@ -23,7 +23,7 @@
       fail(event)
     }
 
-    xhr.open("POST", "https://ipfs.io/ipfs/add")
+    xhr.open("POST", "./upload")
     xhr.send(fd)
 
   })
