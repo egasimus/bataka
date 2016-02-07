@@ -5,7 +5,7 @@
     , splitFilename = originalFilename ? originalFilename.split('.') : null
     , extension = splitFilename ? splitFilename[splitFilename.length - 1] : ""
     , fileName = $.lib.shortid() + extension
-    , filePath = require('path').resolve($.options.uploadTo, fileName)
+    , filePath = require('path').resolve($.options.upload.location, fileName)
     , originalSize = parseInt(req.headers['content-length'], 10)
 
   console.log("receiving file", originalFilename,

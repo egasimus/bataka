@@ -1,2 +1,2 @@
-(function (hash) { return $.options.ipfsGateway + hash })
+(function (hash) { return $.options.ipfs.gateway + hash })
 

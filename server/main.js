@@ -4,10 +4,10 @@
     , client  = web.app({}, resolve('../client'), resolve('../common'))
     , routes  = [ web.route('/',       client.handler)
                 , web.route('/upload', _.upload) ]
-    , server  = web.server($.options.host, $.options.port, routes);
+    , server  = web.server($.options.server.host, $.options.server.port, routes);
 
   server.http.on('listening', function () {
-    console.log('open ' + $.options.host + ':' + $.options.port +
+    console.log('open ' + $.options.server.host + ':' + $.options.server.port +
       ' in your browser')
   })
 
