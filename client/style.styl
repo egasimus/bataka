@@ -4,7 +4,7 @@
 
 body
   background #fafafa
-  color #222
+  color #000
   margin 0
 
 body, input, textarea, button, table, select
@@ -88,7 +88,7 @@ button
     vertical-align top
 
 .submitForm
-  padding 12px
+  padding 12px 12px 0
   margin 0
 
 .mediaUploader
@@ -126,6 +126,17 @@ button
   padding 0 12px
   border-top 1px solid #ccc
   clear both
+  margin-top 24px
+  &Collapse
+    position absolute
+    font-size 0.8em
+    cursor pointer
+    background #fafafa
+    top -9px
+    color #777
+    & > .postUserName, & > .postText
+      margin-left 6px
+      display inline-block
 
 .post
   margin 12px 0
