@@ -1,4 +1,4 @@
-(function (app) {
+(function () {
   var web = require('glagol-web')
     , resolve = require('path').resolve.bind(null, __dirname)
     , server = web.server($.options.server.host, $.options.server.port,

@@ -13,7 +13,7 @@
   document.body.innerHTML = "";
   document.body.appendChild(view.target);
 
-  // update while editing source
+  // auto-update when some files are changed
   Glagol.events.on('changed', function (node) {
     if (node.path === "/main.js") {
       window.location.reload();

@@ -6,4 +6,4 @@ var resolve = require('path').resolve
 
 server.bind(glagol(resolve(__dirname, 'common')));
 
-server.tree.main(server);
+server().main();
