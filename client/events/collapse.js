@@ -1,3 +1,6 @@
 (function (threadId, event) {
-  $.util.localState($.state.threads[threadId]).put("collapsed", true);
+  if ($.state.collapsedThreads().indexOf(threadId) < 0) {
+    $.state.collapsedThreads.push(threadId);
+  }
+  $.util.storageSet("collapsedThreads", $.state.collapsedThreads());
 })

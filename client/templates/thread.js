@@ -1,6 +1,6 @@
 (function (thread) {
   
-  var collapsed = (thread.local || {}).collapsed
+  var collapsed = $.state.collapsedThreads().indexOf(thread.id) > -1
     , firstPost = thread.posts[0];
 
   var body = [ $.h(".threadCollapse",

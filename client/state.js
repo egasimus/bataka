@@ -21,6 +21,9 @@ $.lib.riko.M({
     {}),
 
   lastSeenPosts: $.util.storageGet("lastSeenPosts",
-    {})
+    {}),
+
+  collapsedThreads: $.util.storageGet("collapsedThreads",
+    [])
 
 })
