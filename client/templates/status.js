@@ -47,7 +47,7 @@
       { href: newPosts
           ? '#post_' + firstNew
           : '#thread_' + thread.id
-      , onclick: $.emit("seen", thread.id) },
+      , onclick: $.util.scrollToFirstNewPost(thread.id) },
       [ newPosts ? $.h(".statusThreadNewPosts", String(newPosts)) : null
       , $.h(".statusThreadDetails", statusThreadDetails(
           first.user || $.h("em", "onan."),

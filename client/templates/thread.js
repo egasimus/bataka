@@ -2,21 +2,16 @@
   
   var collapsed = $.state.collapsedThreads().indexOf(thread.id) > -1
     , firstPost = thread.posts[0]
-    , newPosts  = $.util.getNewPosts(thread.id)
-    , firstNew  = $.util.getFirstNewPost(thread.id);
+    , newPosts  = $.util.getNewPosts(thread.id);
 
   var body = [ $.h(".threadCollapse",
     { onclick: $.emit(collapsed ? "expand" : "collapse", thread.id)},
     collapsed
       ? [ "[expand]"
         , newPosts > 0
-          ? $.h("a.threadNewPosts", { onclick: function () {
-              $.emit('expand', thread.id)();
-              requestAnimationFrame(function () {
-                var post = document.getElementById("post_" + firstNew)
-                window.scrollBy(0, post.getBoundingClientRect().top);
-              })
-            } }, String(newPosts))
+          ? $.h("a.threadNewPosts",
+              { onclick: $.util.scrollToFirstNewPost(thread.id) },
+              String(newPosts))
           : null
         , $.h(".postDate",
             String(firstPost.time || ""))
