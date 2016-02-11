@@ -64,11 +64,14 @@ button
   &Threads
     margin-top 6px
   &Thread
-    display block
+    display flex
+    flex-direction row
+    align-items center
     padding 4px 6px
     white-space nowrap
     overflow hidden
     cursor pointer
+    text-decoration none
     &:hover
       background white
     &User, &Text
@@ -76,6 +79,12 @@ button
     &User
       font-weight bold
       margin-right 3px
+    &NewPosts
+      margin-right 6px
+      padding 6px 3px
+      font-weight bold
+      background #88dd44
+      border-radius 6px
 
 .content
   padding-right 240px

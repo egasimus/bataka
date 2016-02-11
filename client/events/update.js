@@ -5,8 +5,7 @@
   Object.keys(data).forEach(function (key) {
     var val = data[key];
     $.state.put(key, val);
+    if (key === "threads") $.util.storageSet(key, val);
   })
-
-  $.util.storageSet('threads', $.state.threads());
 
 })

@@ -18,6 +18,9 @@ $.lib.riko.M({
     0,
 
   threads: $.util.storageGet("threads",
+    {}),
+
+  lastSeenPosts: $.util.storageGet("lastSeenPosts",
     {})
 
 })

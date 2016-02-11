@@ -13,34 +13,48 @@
     //ppl = "~ " + ppl + " people here"
   //}
 
-  var newThread = $.h("a.statusThread", { href: "#submitForm" },
-    [ $.h(".statusThreadUser", "+ submit")
-    , $.h(".statusThreadText", "new thread...")])
+  var username = $.h("input#username",
+    { type: "text"
+    , placeholder: "onanimus"
+    , value: $.state.user.nick()
+    , onchange: $.emit("username") });
+
+  var newThread = $.h("a.statusThread",
+    { href: "#submitForm"
+    , onclick: function () { document.getElementById("submitText").focus() } },
+    statusThreadDetails("+ submit", "new thread..."))
+
+  var threads = Object.keys(state.threads).reverse().map(statusThread);
 
   return $.h(".status",
-    [ $.h("input#username",
-        { type: "text"
-        , placeholder: "onanimus"
-        , value: $.state.user.nick()
-        , onchange: $.emit("username") })
+    [ username 
     //, $.h(".statusItem", [ $.h("input#password", { type: "password", placeholder: "secret (for tripcode)" }) ])
     , $.h(".statusItem", (state.server ? "" : "not ") + "connected to server")
     //, $.h(".statusItem", ppl)
     //, $.h(".statusItem", (p2p          ? "" : "not ") + "connected to peer broker")
     //, $.h(".statusItem", "connected to " + state.p2p.peers.length + " peers") ])
-    , $.h(".statusThreads", [newThread].concat(Object.keys(state.threads).reverse().map(statusThread)))
+    , $.h(".statusThreads", [newThread].concat(threads))
     ])
 
   function statusThread (threadId) {
-    var thread = state.threads[threadId]
-      , first  = thread.posts[0]
-      , last   = thread.posts[thread.posts.length - 1];
-    return $.h("a.statusThread", { href: '#thread_' + thread.id },
-      [ $.h(".statusThreadUser", first.user || $.h("em", "onan."))
-      , $.h(".statusThreadText", first.text || $.h("em", "(кура ми янко)"))
-      , first === last ? null : $.h("div",
-        [ $.h(".statusThreadUser", last.user || $.h("em", "onan."))
-        , $.h(".statusThreadText", last.text || $.h("em", "(кура ми янко)")) ])])
-  }
+    var thread   = state.threads[threadId]
+      , first    = thread.posts[0]
+      , last     = thread.posts[thread.posts.length - 1]
+      , newPosts = thread.posts.length - (state.lastSeenPosts[threadId] || 0);
+
+    return $.h("a.statusThread",
+      { href: '#thread_' + thread.id 
+      , onclick: $.emit("seen", thread.id) },
+      [ newPosts ? $.h(".statusThreadNewPosts", String(newPosts)) : null
+      , $.h(".statusThreadDetails", statusThreadDetails(
+          first.user || $.h("em", "onan."),
+          first.text || $.h("em", "(кура ми янко)")
+        ).concat([ first === last ? null : $.h("div", statusThreadDetails(
+          last.user || $.h("em", "onan."),
+          last.text || $.h("em", "(кура ми янко)"))) ])) ]) }
+
+  function statusThreadDetails (user, text) {
+    return [ $.h(".statusThreadUser", user)
+           , $.h(".statusThreadText", text) ]; }
 
 })

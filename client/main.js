@@ -21,9 +21,12 @@
     if (node.path === "/style.styl") {
       css.parentElement.removeChild(css);
       css = $.util.insertCss($.style);
-    };
+    }
     if (node.path.indexOf('/templates') === 0) {
       view.update($.state());
+    }
+    if (node.path === '/state.js') {
+      $.connect();
     }
   })
 

@@ -1,6 +1,5 @@
 (function (key, newVal) {
   var key = "localstorage://" + window.location.host + window.location.pathname + key;
-  console.log(localStorage.getItem(key))
   if (localStorage.getItem(key)) try {
     return JSON.parse(localStorage.getItem(key));
   } catch (e) {
