@@ -24,10 +24,12 @@
 
   if (!collapsed) {
     body = body
-      .concat((thread.posts || []).map(_.post))
+      .concat((thread.posts || []).map(post))
       .concat([ _.form(thread) ]);
   }
 
   return $.h(".thread", { id: "thread_" + thread.id }, body);
+
+  function post (p, i) { return _.post(p, thread, i) }
     
 })

@@ -1,4 +1,8 @@
-(function (post) {
+(function (post, thread, index) {
+
+  var seen =
+    thread && (index === Number(index)) &&
+    $.state.lastSeenPosts()[thread.id] > index;
 
   var media = post.media ? $.h(".postMedia", _.media(post.media)) : null
     , body = $.h(".postBody",
@@ -11,6 +15,7 @@
       , $.h(".postText", { innerHTML: $.util.markdown(post.text) })
       ])
 
-  return $.h(".post#post_" + post.id, [media, body]);
+  return $.h(".post#post_" + post.id + (seen ? "" : ".notSeen"),
+    [media, body]);
 
 })
