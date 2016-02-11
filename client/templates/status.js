@@ -40,11 +40,12 @@
     var thread   = state.threads[threadId]
       , first    = thread.posts[0]
       , last     = thread.posts[thread.posts.length - 1]
-      , newPosts = thread.posts.length - (state.lastSeenPosts[threadId] || 0);
+      , newPosts = $.util.getNewPosts(threadId)
+      , firstNew = $.util.getFirstNewPost(threadId);
 
     return $.h("a.statusThread",
       { href: newPosts
-          ? '#post_' + thread.posts[thread.posts.length - newPosts].id
+          ? '#post_' + firstNew
           : '#thread_' + thread.id
       , onclick: $.emit("seen", thread.id) },
       [ newPosts ? $.h(".statusThreadNewPosts", String(newPosts)) : null

@@ -13,6 +13,9 @@
   document.body.innerHTML = "";
   document.body.appendChild(view.target);
 
+  // bind scroll event
+  window.onscroll = $.util.throttleRaf($.emit('scroll'));
+
   // auto-update when some files are changed
   Glagol.events.on('changed', function (node) {
     if (node.path === "/main.js") {

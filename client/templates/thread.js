@@ -1,12 +1,23 @@
 (function (thread) {
   
   var collapsed = $.state.collapsedThreads().indexOf(thread.id) > -1
-    , firstPost = thread.posts[0];
+    , firstPost = thread.posts[0]
+    , newPosts  = $.util.getNewPosts(thread.id)
+    , firstNew  = $.util.getFirstNewPost(thread.id);
 
   var body = [ $.h(".threadCollapse",
     { onclick: $.emit(collapsed ? "expand" : "collapse", thread.id)},
     collapsed
-      ? [ "[expand]" 
+      ? [ "[expand]"
+        , newPosts > 0
+          ? $.h("a.threadNewPosts", { onclick: function () {
+              $.emit('expand', thread.id)();
+              requestAnimationFrame(function () {
+                var post = document.getElementById("post_" + firstNew)
+                window.scrollBy(0, post.getBoundingClientRect().top);
+              })
+            } }, String(newPosts))
+          : null
         , $.h(".postDate",
             String(firstPost.time || ""))
         , $.h(".postUserName",
