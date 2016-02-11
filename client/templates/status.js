@@ -43,7 +43,9 @@
       , newPosts = thread.posts.length - (state.lastSeenPosts[threadId] || 0);
 
     return $.h("a.statusThread",
-      { href: '#thread_' + thread.id 
+      { href: newPosts
+          ? '#post_' + thread.posts[thread.posts.length - newPosts].id
+          : '#thread_' + thread.id
       , onclick: $.emit("seen", thread.id) },
       [ newPosts ? $.h(".statusThreadNewPosts", String(newPosts)) : null
       , $.h(".statusThreadDetails", statusThreadDetails(
