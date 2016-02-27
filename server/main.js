@@ -1,8 +1,9 @@
 (function () {
   var web = require('glagol-web')
     , resolve = require('path').resolve.bind(null, __dirname)
+    , options = { formats: { '.styl': require('glagol-stylus')() } }
     , server = web.server($.options.server.host, $.options.server.port,
-        [ web.route('/', web.app({}, resolve('../client'), resolve('../common')))
+        [ web.route('/', web.app(options, resolve('../client'), resolve('../common')))
         , web.route('/upload', _.upload) ]);
 
   server.http.on('listening', function () {

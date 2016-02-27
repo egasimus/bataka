@@ -10,6 +10,7 @@
   "dependencies": {
     "busboy": "^0.2.12",
     "glagol": "git+https://github.com/egasimus/glagol.git",
+    "glagol-stylus": "git+https://github.com/egasimus/glagol-stylus.git",
     "glagol-web": "git+https://github.com/egasimus/glagol-web.git",
     "ipfs-js": "0.0.7",
     "lazysizes": "^1.4.0",

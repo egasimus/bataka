@@ -4,6 +4,6 @@ var resolve = require('path').resolve
   , glagol  = require('glagol')
   , server  = glagol(resolve(__dirname, 'server'));
 
-server.bind(glagol(resolve(__dirname, 'common')));
+server.overlay(glagol(resolve(__dirname, 'common')));
 
 server().main();
